@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POWWOW - はじめてご来店のお客様へ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+JP:wght@300;400;500&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-pink: #E91E63;
+    --brand-pink-dark: #C2185B;
+    --gold-light: #F48FB1;
+    --gold-pale: #FCE4EC;
+    --dark: #880E4F;
+    --cream: #FFF5F8;
+    --cream-dark: #F8E1E7;
+    --text-main: #4A041E;
+    --text-muted: #AD1457;
+    
+    /* ベースフォントサイズ */
+    --base-font-size: 16px;
+  }
+
+  /* 文字サイズ変更用のクラス */
+  html { font-size: var(--base-font-size); }
+  html.font-small { --base-font-size: 14px; }
+  html.font-medium { --base-font-size: 16px; }
+  html.font-large { --base-font-size: 20px; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--text-main);
+    font-family: 'Noto Serif JP', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  /* ───── HEADER ───── */
+  header {
+    background-color: var(--brand-pink-dark);
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: 0.25em;
+    color: #FFFFFF;
+  }
+
+  .logo-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-pale);
+    margin-top: 0.125rem;
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    background-color: var(--brand-pink-dark);
+    padding: 3.75rem 1.5rem 3.125rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255,255,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-size: 0.625rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-label::before,
+  .hero-label::after {
+    content: '';
+    display: block;
+    width: 3.125rem;
+    height: 0.5px;
+    background: var(--gold-light);
+    opacity: 0.5;
+  }
+
+  .hero-title-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    color: #FFFFFF;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title-jp strong {
+    color: #FFEB3B;
+    font-weight: 500;
+    background: none;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    color: var(--gold-light);
+    opacity: 0.9;
+    margin-top: 1.5rem;
+  }
+
+  /* ───── SECTION WRAPPER ───── */
+  .section {
+    padding: 3.75rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-weight: 500;
+    color: var(--brand-pink-dark);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem;
+    height: 1px;
+    background-color: var(--brand-pink);
+  }
+
+  /* ───── SYMPTOM CARDS ───── */
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .symptom-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .symptom-card {
+    background: #fff;
+    border: 0.5px solid var(--gold-light);
+    border-radius: 8px;
+    padding: 2rem 0.75rem 1.5rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(233,30,99,0.05);
+  }
+
+  .symptom-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem;
+    height: 3px;
+    background: var(--brand-pink);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .symptom-icon {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .symptom-text {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--text-main);
+  }
+
+  /* ───── APPROACH BLOCK ───── */
+  .approach-block {
+    background-color: var(--brand-pink-dark);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 3.125rem;
+  }
+
+  .approach-block::before {
+    content: '';
+    position: absolute;
+    right: -2.5rem; top: -2.5rem;
+    width: 12.5rem; height: 12.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  @media (min-width: 768px) {
+    .approach-block {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 3.125rem 3rem;
+    }
+  }
+
+  .approach-content {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .approach-content {
+      text-align: left;
+    }
+  }
+
+  .approach-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 200;
+    font-size: 0.625rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .approach-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(1.25rem, 4vw, 1.625rem);
+    color: #FFFFFF;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .approach-title strong {
+    color: #FFEB3B;
+    font-weight: 500;
+  }
+
+  .approach-body {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 0.84rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 2;
+  }
+
+  .approach-image-wrap {
+    flex-shrink: 0;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pelvis-illustration {
+    width: 11.5rem;
+    height: auto;
+    overflow: visible;
+  }
+
+  .pelvis-caption {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 0.625rem;
+    color: var(--gold-light);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ───── REASONS ───── */
+  .reasons-section {
+    background-color: var(--cream-dark);
+    padding: 3.75rem 1.5rem;
+  }
+
+  .reasons-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .reason-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 2.25rem 0;
+    border-bottom: 0.5px solid rgba(233,30,99,0.2);
+  }
+
+  .reason-item:first-of-type {
+    border-top: 0.5px solid rgba(233,30,99,0.2);
+  }
+
+  @media (max-width: 600px) {
+    .reason-item {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem 0;
+    }
+  }
+
+  .reason-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--brand-pink);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .reason-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .reason-title em {
+    font-style: normal;
+    color: var(--brand-pink-dark);
+    background: linear-gradient(transparent 70%, var(--gold-light) 70%);
+  }
+
+  .reason-body {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 0.84rem;
+    line-height: 2;
+    color: var(--text-muted);
+  }
+
+  /* ───── GALLERY / BEFORE AFTER ───── */
+  .gallery-container {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .gallery-label {
+    font-size: 0.7rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .gallery-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ───── STAFF BANNER ───── */
+  .staff-banner {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 3.75rem 1.5rem;
+  }
+
+  .staff-banner-inner {
+    border: 1px solid var(--brand-pink);
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 1.75rem 2.25rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .staff-banner-text {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--brand-pink-dark);
+    letter-spacing: 0.06em;
+  }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background-color: var(--dark);
+    padding: 3.75rem 1.5rem 3.125rem;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  .footer-message {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    line-height: 2.2;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+
+  .footer-message strong {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .footer-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    letter-spacing: 0.4em;
+    color: #FFFFFF;
+    margin-bottom: 0.375rem;
+  }
+
+  .footer-tagline {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: 0.625rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+  
+  .ornament {
+    text-align: center;
+    margin: 1.25rem 0 0;
+    color: var(--gold-light);
+    font-size: 0.875rem;
+    letter-spacing: 8px;
+  }
+
+  /* ───── FONT SIZE CONTROLLER ───── */
+  .font-control {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: #FFFFFF;
+    border: 1px solid var(--brand-pink);
+    border-radius: 50px;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    box-shadow: 0 4px 15px rgba(136, 14, 79, 0.2);
+    z-index: 1000;
+  }
+
+  .font-control-btn {
+    border: none;
+    background: transparent;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-family: 'Noto Serif JP', serif;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .font-control-btn.active {
+    background: var(--brand-pink);
+    color: #FFFFFF;
+  }
+
+  .font-control-btn[data-size="medium"] { font-size: 0.9rem; }
+  .font-control-btn[data-size="large"] { font-size: 1.1rem; }
+
+  @media (max-width: 600px) {
+    .font-control {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.35rem;
+    }
+    .font-control-btn {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+</style>
+</head>
+<body class="font-medium">
+
+<!-- FONT SIZE CONTROLLER -->
+<div class="font-control">
+  <button class="font-control-btn" data-size="small">小</button>
+  <button class="font-control-btn active" data-size="medium">中</button>
+  <button class="font-control-btn" data-size="large">大</button>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">POWWOW</div>
+  <div class="logo-sub">WOMEN'S BODY CARE SALON</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">はじめてご来店のお客様へ</div>
+  <p class="hero-title-jp">その<strong>「なんとなくしんどい」</strong>、<br>実は<strong>原因</strong>があります。</p>
+  <p class="hero-subtitle">Your discomfort has a reason — we find it.</p>
+</section>
+
+<!-- SYMPTOMS & APPROACH -->
+<div class="section">
+  <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+  
+  <div class="symptom-grid">
+    <div class="symptom-card">
+      <span class="symptom-icon">😴</span>
+      <p class="symptom-text">寝ても<br>疲れが取れない</p>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">😮‍💨</span>
+      <p class="symptom-text">なんとなく<br>ダルい・重い</p>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">😤</span>
+      <p class="symptom-text">イライラ・<br>気分が上がらない</p>
+    </div>
+    <div class="symptom-card">
+      <span class="symptom-icon">🌡</span>
+      <p class="symptom-text">冷え・むくみ<br>が気になる</p>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="approach-block">
+    <div class="approach-content">
+      <div class="approach-label">POWWOW'S APPROACH</div>
+      <h3 class="approach-title">
+        その不調の多くは、<br>
+        <strong>「仙骨の歪み」</strong>が原因です。
+      </h3>
+      <p class="approach-body">
+        骨盤の中心にあり、背骨を支える土台となる「仙骨」。<br>
+        この大切な土台を丁寧に整えることで、自律神経やホルモンバランスの乱れに根本からアプローチします。<br>
+        身体の軸が整うと、心まで軽やかになります。
+      </p>
+    </div>
+    <div class="approach-image-wrap">
+      <svg class="pelvis-illustration" viewBox="0 0 160 135" xmlns="http://www.w3.org/2000/svg">
+        <!-- Spine (Autonomic Nervous System path) -->
+        <path d="M80 10 Q82 35 80 60 Q78 80 80 100" stroke="#FFEB3B" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="3s" repeatCount="indefinite" />
+        </path>
+        <!-- Spine Detail Nodes -->
+        <circle cx="80" cy="20" r="1.5" fill="#FFEB3B" />
+        <circle cx="80" cy="40" r="1.5" fill="#FFEB3B" />
+        <circle cx="80" cy="60" r="1.5" fill="#FFEB3B" />
+        
+        <!-- Pelvic Girdle (Background outline) -->
+        <path d="M35 70 C35 50, 55 45, 80 45 C105 45, 125 50, 125 70 C125 100, 105 115, 80 115 C55 115, 35 100, 35 70" stroke="#FFFFFF" stroke-width="1" fill="none" opacity="0.3"/>
+        
+        <!-- Sacrum (The Key Base - Triangle shape) -->
+        <path d="M68 90 L92 90 L80 112 Z" fill="#FFEB3B" fill-opacity="0.3" stroke="#FFEB3B" stroke-width="1.8" />
+        
+        <!-- Labels - Strategic placement -->
+        <text x="90" y="30" font-family="'Noto Serif JP',serif" font-size="7" fill="#FFFFFF" opacity="0.9">自律神経の通り道</text>
+        <text x="80" y="128" font-family="'Noto Serif JP',serif" font-weight="500" font-size="8.5" fill="#FFEB3B" text-anchor="middle">骨格の土台：仙骨</text>
+      </svg>
+      <p class="pelvis-caption">身体の土台を整えるイメージ図</p>
+    </div>
+  </div>
+</div>
+
+<!-- REASONS -->
+<div class="reasons-section">
+  <div class="reasons-inner">
+    <h2 class="section-title">POWWOWが選ばれる3つの理由</h2>
+
+    <div class="reason-item">
+      <div class="reason-number">1</div>
+      <div>
+        <h3 class="reason-title"><em>「ほぐす」</em>だけでなく<em>「根本から整える」</em></h3>
+        <p class="reason-body">つらい箇所を揉みほぐすだけでなく、不調の根本原因である仙骨の歪みを独自技術（サクラムバランステクニック）でしっかりと調整します。</p>
+      </div>
+    </div>
+
+    <div class="reason-item">
+      <div class="reason-number">2</div>
+      <div>
+        <h3 class="reason-title">仙骨ケアで<em>女性特有のお悩み</em>も解消</h3>
+        <p class="reason-body">仙骨は子宮や卵巣を支える役割があります。仙骨が歪むと骨盤内の血流が悪くなり、冷えやムクミの原因になることもあります。（生理中でも仙骨矯正は受けられるが、気になる場合は遠慮せずお知らせください）</p>
+      </div>
+    </div>
+
+    <div class="reason-item">
+      <div class="reason-number">3</div>
+      <div>
+        <h3 class="reason-title">仙骨と<em>「小顔」</em>の深い関係</h3>
+        <p class="reason-body">仙骨の歪みはお顔の歪み、たるみ、むくみも引き起こします。小顔矯正をぜひ一緒に行いましょう。「こんなに変わるの？」という感動を、毎回お届けします。</p>
+        
+        <!-- BEFORE AFTER GALLERY -->
+        <div class="gallery-container">
+          <div class="gallery-item">
+            <img src="uploaded:小顔ビフォアフ_40代_HPB用画像_260424 (1).jpg" alt="40代 小顔矯正 ビフォーアフター" onerror="this.src='https://placehold.jp/24/c2185b/ffffff/400x300.png?text=40代%20小顔矯正%0Aビフォーアフター'">
+            <p class="gallery-label">40代：たるみがきゅっと！二重あごスッキリ</p>
+          </div>
+          <div class="gallery-item">
+            <img src="uploaded:小顔ビフォアフ_50代_HPB用画像_260424 (1).jpg" alt="50代 小顔矯正 ビフォーアフター" onerror="this.src='https://placehold.jp/24/c2185b/ffffff/400x300.png?text=50代%20小顔矯正%0Aビフォーアフター'">
+            <p class="gallery-label">50代：表情が若々しく！目がぱっちり</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAFF BANNER -->
+<div class="staff-banner">
+  <div class="staff-banner-inner">
+    <p class="staff-banner-text">スタッフは全員女性。身体のこと、何でも気軽にご相談ください。</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-message">
+    病院に行くほどじゃないけど、<strong>なんかしんどい</strong>——<br>
+    その気持ちに、POWWOWはとことん寄り添います。
+  </p>
+  <div class="ornament">✦</div>
+  <div style="margin-top: 2.25rem;">
+    <div class="footer-logo">POWWOW</div>
+    <div class="footer-tagline">女性の「なんとなくの不調」をケアする整体サロン</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.font-control-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const size = button.getAttribute('data-size');
+      
+      // クラスの切り替え
+      document.documentElement.classList.remove('font-small', 'font-medium', 'font-large');
+      document.documentElement.classList.add(`font-${size}`);
+      
+      // ボタンの活性状態切り替え
+      document.querySelectorAll('.font-control-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
